@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Mahmudul Haque Shawon | Python C++ DSA Expert</title>
+
+    <!-- SEO meta / Google will see these -->
+    <meta name="description" content="Mahmudul Haque Shawon – Python, C++, DSA expert. Codeforces (PythonicShawon), LeetCode, Kaggle, GitHub. 500+ problems, 5★ CodeChef.">
+    <meta name="keywords" content="Mahmudul Haque Shawon, PythonicShawon, Shawon5030, DSA, Python, C++, Codeforces, LeetCode, Kaggle, Machine Learning">
+    <meta name="author" content="Mahmudul Haque Shawon">
+    <!-- Social links for google crawler (hidden but indexed) -->
+    <link rel="me" href="https://github.com/Shawon5030">
+    <link rel="me" href="https://www.youtube.com/@Mahmudul_haque_Shawon">
+    <link rel="me" href="https://kaggle.com/mahmudulhaqueshawon">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Particles -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* ----- RESET & VAR (fully responsive) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a463f5;
+            --accent-1: #00d2ff;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(20, 20, 30, 0.95);
+            --text: #ffffff;
+            --text-secondary: #b0b0b0;
+            --neon: 0 0 10px #6c5ce7, 0 0 20px #6c5ce7;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* cursor (optional but keep) */
+        .cursor,
+        .cursor-follower {
+            display: none;
+        }
+
+        @media (min-width:1025px) {
+            .cursor,
+            .cursor-follower {
+                display: block;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+            }
+            .cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--primary);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.1s;
+            }
+            .cursor-follower {
+                width: 40px;
+                height: 40px;
+                background: rgba(108, 92, 231, 0.1);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s;
+            }
+        }
+
+        /* ========== MODERN NAVBAR (desktop) ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        /* desktop nav links */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-1));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== MODERN SIDEBAR (mobile) ========== */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            color: var(--text);
+            cursor: pointer;
+            z-index: 1002;
+            background: transparent;
+            border: none;
+        }
+
+        /* sidebar overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1003;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* sidebar panel */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(15px);
+            border-left: 1px solid rgba(108, 92, 231, 0.3);
+            z-index: 1004;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        }
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1.5rem;
+        }
+        .sidebar-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .close-sidebar {
+            font-size: 2rem;
+            color: var(--text);
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .sidebar-nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .sidebar-nav a i {
+            width: 30px;
+            color: var(--primary);
+        }
+        .sidebar-nav a:hover {
+            background: rgba(108, 92, 231, 0.2);
+            transform: translateX(5px);
+        }
+
+        .sidebar-social {
+            margin-top: auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .sidebar-social a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+        .sidebar-social a:hover {
+            color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        @media (min-width: 769px) {
+            .sidebar-overlay, .sidebar, .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* ===== char by char animation ===== */
+        .char-name {
+            display: inline-block;
+            animation: charAppear 0.4s both;
+            font-weight: 800;
+        }
+        @keyframes charAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(0.9);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Hero section (unchanged except for your requested name effect) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 5% 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1 1 350px;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 1rem;
+        }
+        .hero-title span {
+            background: linear-gradient(135deg, #00d2ff, #6c5ce7, #a463f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* profile image container */
+        .hero-visual {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .profile-pic-frame {
+            width: min(300px, 70%);
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5, #00d2ff);
+            padding: 6px;
+            box-shadow: var(--neon);
+            animation: float 4s infinite;
+        }
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #1a1a2e;
+            display: block;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+        }
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: white;
+        }
+
+        /* sections spacing (all unchanged below) */
+        section {
+            padding: 80px 5%;
+        }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon);
+        }
+        .profile-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .profile-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7, #a463f5);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+        }
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+        }
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        .footer {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6c5ce7, #00d2ff);
+            z-index: 1001;
+        }
+        .loader-wrapper {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(108, 92, 231, 0.2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s infinite;
+        }
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* preserve django template syntax */
+    </style>
+
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: block;
+            min-height: 1.2rem;
+        }
+        
+        .form-notification {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .form-notification.success {
+            background: rgba(72, 187, 120, 0.2);
+            border: 1px solid #48bb78;
+            color: #48bb78;
+        }
+        
+        .form-notification.error {
+            background: rgba(245, 101, 101, 0.2);
+            border: 1px solid #f56565;
+            color: #f56565;
+        }
+        
+        .form-notification.info {
+            background: rgba(66, 153, 225, 0.2);
+            border: 1px solid #4299e1;
+            color: #4299e1;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .btn-loader {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        input.error, textarea.error {
+            border-color: #f56565 !important;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- loader -->
+    <div class="loader-wrapper" id="loader"><div class="loader"></div></div>
+
+    <!-- cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <div id="particles-js"></div>
+
+    <!-- Navbar (desktop) + mobile toggle -->
+    <nav class="navbar">
+        <div class="logo name-rotate" data-tooltip="Mahmudul Haque Shawon">M.H. Shawon</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#profiles">Coding</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- Sidebar overlay & panel (modern mobile menu) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">M.H. Shawon</span>
+            <button class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-nav">
+            <a href="#home" class="sidebar-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#skills" class="sidebar-link"><i class="fas fa-code"></i> Skills</a>
+            <a href="#profiles" class="sidebar-link"><i class="fas fa-user"></i> Coding</a>
+            <a href="#achievements" class="sidebar-link"><i class="fas fa-trophy"></i> Achievements</a>
+            <a href="#contact" class="sidebar-link"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+        <div class="sidebar-social">
+            <a href="https://github.com/Shawon5030" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@Mahmudul_haque_Shawon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://kaggle.com/mahmudulhaqueshawon" target="_blank"><i class="fab fa-kaggle"></i></a>
+        </div>
+    </div>
+
+    <!-- HERO with picture and rotating full name (char by char) -->
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <span class="hero-badge">🏆 Python · C++ · DSA Expert</span>
+            <h1 class="hero-title">
+                Hi, I'm <br><span id="dynamic-name">Mahmudul Haque Shawon</span>
+            </h1>
+            <p class="hero-description">
+                Known as <strong>PythonicShawon</strong> across platforms. Specialist in Cp, machine learning &
+                full-stack Python.
+                Codeforces max ({{profile_data.codeforces_rating}}), CodeChef {{profile_data.codechef_star}}★
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="stat-number">{{profile_data.total_problem_solved}}+</span>
+                    <div class="stat-label">problems</div>
+                </div>
+                <div class="stat-item"><span class="stat-number">{{profile_data.codechef_star}}★</span>
+                    <div class="stat-label">CodeChef</div>
+                </div>
+                <div class="stat-item"><span class="stat-number">{{profile_data.total_contest}}+</span>
+                    <div class="stat-label">contests</div>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Hire me <i class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/Shawon5030" class="btn btn-outline" target="_blank">GitHub <i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div class="hero-visual" data-aos="fade-left">
+            <div class="profile-pic-frame">
+                <div class="profile-pic" style="background: linear-gradient(145deg, #2a2a40, #1a1a2e); display: flex; align-items: center; justify-content: center;">
+                    <img src="{{profile_data.profile_pic.url}}" alt="Mahmudul" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills (condensed but present) -->
+    <section id="skills" class="skills">
+        <h2 class="section-title" data-aos="fade-up">Core expertise</h2>
+        <p class="section-subtitle">Languages & frameworks I master</p>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fab fa-python"></i> Python</h3>
+                <p>Django, ML, NumPy</p>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> C++</h3>
+                <p>DSA, STL, algorithms, CP</p>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> SQL/DS</h3>
+                <p>MySQL,SqlLite</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CODING PROFILES with ALL your socials (expanded) -->
+    <section id="profiles" class="coding-profiles">
+        <h2 class="section-title" data-aos="fade-up">Coding & Social Presence</h2>
+        <p class="section-subtitle">Google can discover me everywhere ↓</p>
+        <div class="profiles-grid">
+            <!-- GitHub -->
+            <div class="profile-card" data-aos="zoom-in">
+                <div class="profile-icon"><i class="fab fa-github"></i></div>
+                <h3>GitHub</h3>
+                <p>Shawon5030</p><a href="https://github.com/Shawon5030" target="_blank" class="profile-link">@Shawon5030</a>
+            </div>
+            <!-- YouTube -->
+            <div class="profile-card" data-aos="zoom-in" data-aos-delay="50">
+                <div class="profile-icon"><i class="fab fa-youtube"></i></div>
+                <h3>YouTube</h3>
+                <p>Mahmudul Haque Shawon</p><a href="https://www.youtube.com/@Mahmudul_haque_Shawon" target="_blank" class="profile-link">channel</a>
+            </div>
+            <!-- Codeforces -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Codeforces</h3>
+                <p>PythonicShawon (Spec)</p><a href="https://codeforces.com/profile/PythonicShawon" target="_blank" class="profile-link">visit</a>
+            </div>
+            <!-- LeetCode -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fas fa-code"></i></div>
+                <h3>LeetCode</h3>
+                <p>haquemahmudul600</p><a href="https://leetcode.com/u/haquemahmudul600" target="_blank" class="profile-link">profile</a>
+            </div>
+            <!-- Kaggle -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-kaggle"></i></div>
+                <h3>Kaggle</h3>
+                <p>mahmudulhaqueshawon</p><a href="https://kaggle.com/mahmudulhaqueshawon" target="_blank" class="profile-link">kaggle</a>
+            </div>
+            <!-- Facebook -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-facebook"></i></div>
+                <h3>Facebook</h3>
+                <p>Mahmudul Haque Shawon</p><a href="https://facebook.com/mahmudulhaqueshawon.pythonlover" target="_blank" class="profile-link">page</a>
+            </div>
+            <!-- HackerRank -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-hackerrank"></i></div>
+                <h3>HackerRank</h3>
+                <p>haquemahmudul600</p><a href="https://hackerrank.com/profile/haquemahmudul600" target="_blank" class="profile-link">@haquemahmudul600</a>
+            </div>
+            <!-- WakaTime -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fas fa-clock"></i></div>
+                <h3>WakaTime</h3>
+                <p>Shawon</p><a href="https://wakatime.com/@Shawon" target="_blank" class="profile-link">stats</a>
+            </div>
+            <!-- Medium -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-medium"></i></div>
+                <h3>Medium</h3>
+                <p>mahmudulhaqueshawon</p><a href="https://mahmudulhaqueshawon.medium.com" target="_blank" class="profile-link">blog</a>
+            </div>
+            <!-- Dev.to -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-dev"></i></div>
+                <h3>Dev.to</h3>
+                <p>@mahmudulhaqueshawon</p><a href="https://dev.to/mahmudulhaqueshawon" target="_blank" class="profile-link">dev.to</a>
+            </div>
+            <!-- Twitter/X -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-twitter"></i></div>
+                <h3>X (Twitter)</h3>
+                <p>@Mahmudul_100</p><a href="https://x.com/Mahmudul_100" target="_blank" class="profile-link">follow</a>
+            </div>
+            <!-- Instagram -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-instagram"></i></div>
+                <h3>Instagram</h3>
+                <p>mahmudulhaqueshawon.insta</p><a href="https://instagram.com/mahmudulhaqueshawon.insta" target="_blank" class="profile-link">ig</a>
+            </div>
+            <!-- Pinterest -->
+            <div class="profile-card">
+                <div class="profile-icon"><i class="fab fa-pinterest"></i></div>
+                <h3>Pinterest</h3>
+                <p>mahmudulhaqueshawon</p><a href="https://pinterest.com/mahmudulhaqueshawon" target="_blank" class="profile-link">pins</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="achievements">
+        <h2 class="section-title">Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card"><i class="fas fa-medal fa-3x" style="color:var(--primary);"></i>
+                <h3>CodeChef {{profile_data.codechef_star}}★</h3>
+                <p>max {{profile_data.codechef_rating}}</p>
+            </div>
+            <div class="achievement-card"><i class="fas fa-trophy fa-3x"></i>
+                <h3>Kaggle Grandmaster</h3>
+                <p>Top 30 in World</p>
+            </div>
+            {% if profile_data.codeforces %}
+            <div class="achievement-card"><i class="fas fa-laptop-code fa-3x"></i>
+                <h3>Codeforces</h3>
+                <p>{{profile_data.codeforces}} (max {{profile_data.}})</p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's connect</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item"><i class="fas fa-envelope"></i> haquemahmudul600@gmail.com</div>
+                <div class="contact-item"><i class="fab fa-github"></i> Shawon5030</div>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@Mahmudul_haque_Shawon" class="social-link" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://github.com/Shawon5030" class="social-link" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://kaggle.com/mahmudulhaqueshawon" class="social-link" data-tooltip="Kaggle"><i class="fab fa-kaggle"></i></a>
+                    <a href="https://facebook.com/mahmudulhaqueshawon.pythonlover" class="social-link" data-tooltip="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://codeforces.com/profile/PythonicShawon" class="social-link" data-tooltip="Codeforces"><i class="fas fa-trophy"></i></a>
+                    <a href="https://leetcode.com/u/haquemahmudul600" class="social-link" data-tooltip="LeetCode"><i class="fas fa-code"></i></a>
+                    <a href="https://x.com/Mahmudul_100" class="social-link" data-tooltip="X"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/mahmudulhaqueshawon.insta" class="social-link" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://medium.com/@mahmudulhaqueshawon" class="social-link" data-tooltip="Medium"><i class="fab fa-medium"></i></a>
+                    <a href="https://dev.to/mahmudulhaqueshawon" class="social-link" data-tooltip="Dev.to"><i class="fab fa-dev"></i></a>
+                </div>
+            </div>
+            
+            <!-- Updated form with ID and novalidate -->
+            <form class="contact-form" id="contactForm" method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Your name" required>
+                    <small class="error-message" id="nameError"></small>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <small class="error-message" id="emailError"></small>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+                    <small class="error-message" id="messageError"></small>
+                </div>
+                
+                <!-- Custom notification area -->
+                <div id="formNotification" class="form-notification" style="display: none;"></div>
+                
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%;">
+                    <span class="btn-text"><i class="fas fa-paper-plane"></i> Send</span>
+                    <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Mahmudul Haque Shawon • All profiles linked</p>
+        <div><a href="#home" style="color:var(--text-secondary);">Back to top</a></div>
+    </footer>
+
+    <!-- scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            const notification = document.getElementById('formNotification');
+            
+            // Get input fields
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            
+            // Error message elements
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+            
+            // Clear all errors
+            function clearErrors() {
+                [nameError, emailError, messageError].forEach(el => {
+                    if (el) el.textContent = '';
+                });
+                [nameInput, emailInput, messageInput].forEach(el => {
+                    if (el) el.classList.remove('error');
+                });
+            }
+            
+            // Show field error
+            function showFieldError(field, message) {
+                const errorEl = document.getElementById(`${field}Error`);
+                const inputEl = document.getElementById(field);
+                if (errorEl) errorEl.textContent = message;
+                if (inputEl) inputEl.classList.add('error');
+            }
+            
+            // Show notification
+            function showNotification(message, type = 'success') {
+                notification.textContent = message;
+                notification.className = `form-notification ${type}`;
+                notification.style.display = 'block';
+                
+                // Auto hide after 5 seconds for success messages
+                if (type === 'success') {
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 5000);
+                }
+            }
+            
+            // Set loading state
+            function setLoading(isLoading) {
+                if (isLoading) {
+                    btnText.style.display = 'none';
+                    btnLoader.style.display = 'inline';
+                    submitBtn.disabled = true;
+                } else {
+                    btnText.style.display = 'inline';
+                    btnLoader.style.display = 'none';
+                    submitBtn.disabled = false;
+                }
+            }
+            
+            // Validate email format
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Handle form submission
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Clear previous errors
+                clearErrors();
+                notification.style.display = 'none';
+                
+                // Get form data
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const message = messageInput.value.trim();
+                
+                // Validate fields
+                let isValid = true;
+                
+                if (!name) {
+                    showFieldError('name', 'Name is required');
+                    isValid = false;
+                }
+                
+                if (!email) {
+                    showFieldError('email', 'Email is required');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showFieldError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                if (!message) {
+                    showFieldError('message', 'Message is required');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    showNotification('Please fix the errors above', 'error');
+                    return;
+                }
+                
+                // Get CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                
+                // Prepare data
+                const formData = {
+                    name: name,
+                    email: email,
+                    message: message
+                };
+                
+                // Show loading state
+                setLoading(true);
+                
+                try {
+                    // Send data to server
+                    const response = await fetch('/api/contact-submit/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
+                        // Show success message
+                        showNotification(result.message, 'success');
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Optional: Store in localStorage as backup
+                        const submissions = JSON.parse(localStorage.getItem('contact_submissions') || '[]');
+                        submissions.push({
+                            ...formData,
+                            submitted_at: new Date().toISOString(),
+                            synced: true
+                        });
+                        localStorage.setItem('contact_submissions', JSON.stringify(submissions));
+                        
+                    } else {
+                        // Show error message
+                        showNotification(result.error || 'Something went wrong. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    
+                    // Show error notification
+                    showNotification('Network error. Your message has been saved locally and will be sent when connection is restored.', 'info');
+                    
+                    // Save to localStorage as backup
+                    const submissions = JSON.parse(localStorage.getItem('contact_submissions') || '[]');
+                    submissions.push({
+                        ...formData,
+                        submitted_at: new Date().toISOString(),
+                        synced: false
+                    });
+                    localStorage.setItem('contact_submissions', JSON.stringify(submissions));
+                    
+                } finally {
+                    setLoading(false);
+                }
+            });
+            
+            // Real-time validation (optional)
+            nameInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('error');
+                    nameError.textContent = '';
+                }
+            });
+            
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim() && isValidEmail(this.value.trim())) {
+                    this.classList.remove('error');
+                    emailError.textContent = '';
+                }
+            });
+            
+            messageInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('error');
+                    messageError.textContent = '';
+                }
+            });
+            
+            // Sync offline submissions when online
+            window.addEventListener('online', function() {
+                const submissions = JSON.parse(localStorage.getItem('contact_submissions') || '[]');
+                const unsynced = submissions.filter(s => !s.synced);
+                
+                if (unsynced.length > 0) {
+                    showNotification(`Syncing ${unsynced.length} offline messages...`, 'info');
+                    
+                    // You could implement background sync here
+                    unsynced.forEach(async (submission) => {
+                        try {
+                            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                            await fetch('/api/contact-submit/', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': csrfToken
+                                },
+                                body: JSON.stringify(submission)
+                            });
+                            
+                            // Mark as synced
+                            submission.synced = true;
+                        } catch (error) {
+                            console.error('Failed to sync submission:', error);
+                        }
+                    });
+                    
+                    // Update localStorage
+                    localStorage.setItem('contact_submissions', JSON.stringify(submissions));
+                }
+            });
+        });
+    </script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        particlesJS('particles-js', { particles: { number: { value: 60 }, color: { value: '#6c5ce7' }, shape: { type: 'circle' }, opacity: { value: 0.3 }, size: { value: 2 }, line_linked: { enable: true, color: '#6c5ce7', opacity: 0.1 }, move: { speed: 1 } } });
+
+        window.addEventListener('load', () => document.getElementById('loader').classList.add('hidden'));
+
+        // scroll progress
+        window.addEventListener('scroll', () => {
+            let h = document.documentElement, st = h.scrollTop || document.body.scrollTop, sh = h.scrollHeight - h.clientHeight;
+            document.getElementById('scroll-progress').style.width = (st / sh * 100) + '%';
+        });
+
+        // smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                let t = document.querySelector(this.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+                // close sidebar if open
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // character-by-character name effect (staggered)
+        window.onload = function () {
+            const nameSpan = document.getElementById('dynamic-name');
+            const full = "Mahmudul Haque Shawon";
+            let html = '';
+            for (let ch of full) {
+                html += `<span class="char-name" style="animation-delay: ${Math.random() * 0.4}s;">${ch === ' ' ? '&nbsp;' : ch}</span>`;
+            }
+            nameSpan.innerHTML = html;
+        };
+
+        // cursor effect desktop
+        if (window.innerWidth > 1024) {
+            const cursor = document.querySelector('.cursor'), follower = document.querySelector('.cursor-follower');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+                setTimeout(() => { follower.style.left = e.clientX + 'px'; follower.style.top = e.clientY + 'px'; }, 80);
+            });
+        }
+
+        // ---------- SIDEBAR CONTROLS (modern mobile menu) ----------
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const closeBtn = document.getElementById('closeSidebar');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        if (menuToggle) menuToggle.addEventListener('click', openSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+
+        // close sidebar on link click (already handled in smooth scroll)
+    </script>
+    <!-- django template tags untouched -->
+    {% comment %} Django template tags left intact {% endcomment %}
+</body>
+</html>
